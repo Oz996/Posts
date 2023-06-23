@@ -37,7 +37,7 @@ const AuthModal = ({ setShowModal }) => {
       .then((userCredential) => {
         const user = userCredential.user;
         if (user) {
-            setShowModal(false)
+          setShowModal(false);
         }
       })
       .catch((error) => {
@@ -47,6 +47,7 @@ const AuthModal = ({ setShowModal }) => {
 
   const registerUser = (e) => {
     e.preventDefault();
+
     createUserWithEmailAndPassword(auth, formData.email, formData.password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -68,7 +69,7 @@ const AuthModal = ({ setShowModal }) => {
 
   return (
     <div className="w-screen h-screen bg-black bg-opacity-70">
-      <div className="w-4/12 mx-auto mt-5 absolute top-60 right-0 left-0 bg-white h-3/5 border rounded border-black shadow-lg">
+      <div className="w-3/12 mx-auto mt-5 fixed top-60 right-0 left-0 bg-white h-3/5 border rounded border-black ">
         <MdClose
           onClick={() => setShowModal(false)}
           size={26}

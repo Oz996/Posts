@@ -1,9 +1,8 @@
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectAllPosts } from "../redux/slice/postsSlice";
 import { useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { addPost } from "../redux/slice/postsSlice";
-import { selectAllUsers } from "../redux/slice/usersSlice";
 
 const Create = () => {
   const initialState = {
@@ -13,8 +12,6 @@ const Create = () => {
   const [formData, setFormData] = useState(initialState);
   const [userId, setUserId] = useState("");
   const posts = useSelector(selectAllPosts);
-
-  const users = useSelector(selectAllUsers);
 
   const dispatch = useDispatch();
 
