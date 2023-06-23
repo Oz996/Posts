@@ -48,14 +48,14 @@ const Create = () => {
         <h2 className="text-2xl text-center mb-2">Create a Post</h2>
         <form className="flex flex-col" onSubmit={addNewPost}>
           <input
-            className="my-2 p-1"
+            className="my-2 p-1 border"
             type="text"
             name="title"
             placeholder="Title..."
             onChange={handleChange}
           />
           <textarea
-            className="my-2 p-1 resize-none"
+            className="my-2 p-1 resize-none border"
             name="body"
             rows="8"
             placeholder="Content..."

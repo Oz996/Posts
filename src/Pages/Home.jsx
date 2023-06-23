@@ -1,8 +1,11 @@
+import Create from "../Components/Create"
 
 
 const Home = () => {
   return (
-    <div className="">Home</div>
+   <>
+   <Create/>
+   </>
   )
 }
 
