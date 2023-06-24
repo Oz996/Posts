@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [{ id: "1", title: "test", body: "bla bla bla bla" }];
+const initialState = [{
+  id: "",
+  title: "",
+  body:""
+}]
 
 const postsSlice = createSlice({
   name: "posts",
@@ -13,6 +17,13 @@ const postsSlice = createSlice({
       const postId = action.payload;
       return state.filter((post) => post.id !== postId);
     },
+    addReaction(state,action){
+      const { postId, reaction} = action.payload
+      const existingPost = state.find(post => post.id === postId)
+      if (existingPost){
+        existingPost.reaction[reaction]++
+      }
+    }
   },
 });
 

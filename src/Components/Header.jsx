@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectIsLoggedIn } from "../redux/slice/userSlice";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
@@ -31,6 +32,7 @@ const Header = () => {
   const logoutUser = () => {
     dispatch(logout());
     auth.signOut();
+    toast.info("You have been signed out")
   };
 
   return (

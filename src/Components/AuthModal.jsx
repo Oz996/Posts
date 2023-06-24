@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AuthModal = ({ setShowModal }) => {
   const initialState = {
@@ -28,6 +29,8 @@ const AuthModal = ({ setShowModal }) => {
     signInWithPopup(auth, provider).then((result) => {
       const user = result.user;
       setShowModal(false);
+      toast.success(`Welcome ${user.email}`)
+
     });
   };
 
@@ -36,8 +39,10 @@ const AuthModal = ({ setShowModal }) => {
     signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(userCredential)
         if (user) {
           setShowModal(false);
+          toast.success(`Welcome ${user.email}`)
         }
       })
       .catch((error) => {

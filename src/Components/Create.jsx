@@ -3,6 +3,8 @@ import { selectAllPosts } from "../redux/slice/postsSlice";
 import { useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { addPost } from "../redux/slice/postsSlice";
+import { selectIsLoggedIn } from "../redux/slice/userSlice";
+import { toast } from "react-toastify";
 
 const Create = () => {
   const initialState = {
@@ -14,6 +16,7 @@ const Create = () => {
   const posts = useSelector(selectAllPosts);
 
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleChange = (e) => {
     setFormData((data) => {
@@ -26,16 +29,25 @@ const Create = () => {
 
   const addNewPost = (e) => {
     e.preventDefault();
+    if (!isLoggedIn) {
+      toast.info("You need to login to create a post");
+      return;
+    }
+    const { title, body } = formData;
+    if (!title || !body) {
+      toast.error("Please fill out both fields")
+      return
+    }
     if (formData) {
       dispatch(
         addPost({
           id: nanoid(),
-          title: formData.title,
-          body: formData.body,
+          title,
+          body,
           userId,
         })
       );
-      setFormData("");
+      setFormData(initialState);
     }
   };
 
@@ -45,18 +57,20 @@ const Create = () => {
         <h2 className="text-2xl text-center mb-2">Create a Post</h2>
         <form className="flex flex-col" onSubmit={addNewPost}>
           <input
-            className="my-2 p-1 border"
+            className="my-2 p-1 border rounded"
             type="text"
             name="title"
             placeholder="Title..."
             onChange={handleChange}
+            value={formData.title}
           />
           <textarea
-            className="my-2 p-1 resize-none border"
+            className="my-2 p-1 resize-none border rounded"
             name="body"
             rows="8"
             placeholder="Content..."
             onChange={handleChange}
+            value={formData.body}
           ></textarea>
           <button className="bg-slate-700 text-white rounded py-1">
             Submit Post
@@ -65,7 +79,7 @@ const Create = () => {
       </section>
 
       <article className="w-3/5 mx-auto">
-        {posts.map((post) => (
+        {posts?.map((post) => (
           <div
             className="my-5 bg-slate-700 text-white rounded p-3 text-center"
             key={post.id}
