@@ -68,8 +68,8 @@ const AuthModal = ({ setShowModal }) => {
   };
 
   return (
-    <div className="w-screen h-screen bg-black bg-opacity-70">
-      <div className="w-3/12 mx-auto mt-5 fixed top-60 right-0 left-0 bg-white h-3/5 border rounded border-black ">
+    <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-70">
+      <div className="w-3/12 mx-auto mt-5 fixed top-52 right-0 left-0 bg-white h-3/5 border rounded border-black ">
         <MdClose
           onClick={() => setShowModal(false)}
           size={26}
