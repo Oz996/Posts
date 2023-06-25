@@ -1,3 +1,30 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "id": "DLNCUUdVdnouXrPJrCEjU",
+      "title": "My first blog",
+      "body": "bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ",
+      "email": "test@mail.com",
+      "reactions": {
+        "thumbsUp": 0,
+        "cool": 0,
+        "wow": 0,
+        "funny": 0,
+        "love": 0
+      }
+    },
+    {
+      "id": "ehvbmxL9zmWw2FjREq6c9",
+      "title": "TEst",
+      "body": "haha!",
+      "email": "test@mail.com",
+      "reactions": {
+        "thumbsUp": 0,
+        "cool": 0,
+        "wow": 0,
+        "funny": 0,
+        "love": 0
+      }
+    }
+  ]
 }
