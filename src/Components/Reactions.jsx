@@ -1,5 +1,8 @@
 import { useDispatch } from "react-redux";
-import { addReaction } from "../redux/slice/postsSlice";
+import {
+  decrementReaction,
+  incrementReaction,
+} from "../redux/slice/postsSlice";
 
 const reactionEmoji = {
   thumbsUp: "👍",
@@ -12,16 +15,19 @@ const reactionEmoji = {
 const Reactions = ({ post }) => {
   const dispatch = useDispatch();
 
-  const handleReactionClick = (postId, reaction) => {
-    dispatch(addReaction({ postId, reaction }));
+  const handleIncrement = (postId, reaction) => {
+    dispatch(incrementReaction({ postId, reaction }));
+  };
+  const handleDecrement = (reaction) => {
+    dispatch(decrementReaction({ postId: post.id }));
   };
   return (
     <div>
       {Object.keys(reactionEmoji).map((reaction) => (
         <button
+          onClick={() => handleIncrement(post.id, reaction)}
           className="mx-1"
           key={reaction}
-          onClick={() => handleReactionClick(post.id, reaction)}
         >
           {reactionEmoji[reaction]} {post.reactions[reaction]}
         </button>

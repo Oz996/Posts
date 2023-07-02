@@ -15,7 +15,7 @@ import { auth } from "../firebase/config";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const AuthModal = ({ setShowModal }) => {
+const AuthModal = ({ setAuthModal }) => {
   const initialState = {
     email: "",
     password: "",
@@ -28,9 +28,8 @@ const AuthModal = ({ setShowModal }) => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((result) => {
       const user = result.user;
-      setShowModal(false);
-      toast.success(`Welcome ${user.email}`)
-
+      setAuthModal(false);
+      toast.success(`Welcome ${user.email}`);
     });
   };
 
@@ -39,10 +38,10 @@ const AuthModal = ({ setShowModal }) => {
     signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(userCredential)
+        console.log(userCredential);
         if (user) {
-          setShowModal(false);
-          toast.success(`Welcome ${user.email}`)
+          setAuthModal(false);
+          toast.success(`Welcome ${user.email}`);
         }
       })
       .catch((error) => {
@@ -75,11 +74,13 @@ const AuthModal = ({ setShowModal }) => {
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-70">
       <div className="w-3/12 mx-auto mt-5 fixed top-52 right-0 left-0 bg-white h-3/5 border rounded border-black ">
-        <MdClose
-          onClick={() => setShowModal(false)}
-          size={26}
-          className="cursor-pointer"
-        />
+        <div className="flex justify-end">
+          <MdClose
+            onClick={() => setAuthModal(false)}
+            size={26}
+            className="cursor-pointer"
+          />
+        </div>
         {login ? (
           <form className="flex flex-col w-3/5 mx-auto">
             <img className="w-32 self-center mt-3" src={logo} alt="logo" />

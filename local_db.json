@@ -25,6 +25,58 @@
         "funny": 0,
         "love": 0
       }
+    },
+    {
+      "id": "PatiwGxXm4lYKjnqWyX0W",
+      "title": "aaaaaaa",
+      "body": "eeeeeeeee",
+      "email": "nguven996@gmail.com",
+      "reactions": {
+        "thumbsUp": 0,
+        "cool": 0,
+        "wow": 0,
+        "funny": 0,
+        "love": 0
+      }
+    },
+    {
+      "id": "z3UegjJ02HbDyG17NJBv7",
+      "title": "213",
+      "body": "123213",
+      "email": "nguven996@gmail.com",
+      "reactions": {
+        "thumbsUp": 0,
+        "cool": 0,
+        "wow": 0,
+        "funny": 0,
+        "love": 0
+      }
+    },
+    {
+      "id": "j_kfYvtnvrzuKVtPErut0",
+      "title": "useEffect",
+      "body": "  (() => {\n    dispatch(showPosts()).catch((error) => {\n      console.error(error);\n    });\n  }, [dispatch]);",
+      "email": "nguven996@gmail.com",
+      "reactions": {
+        "thumbsUp": 0,
+        "cool": 0,
+        "wow": 0,
+        "funny": 0,
+        "love": 0
+      }
+    },
+    {
+      "id": "Toi3nW2Z2uS_vPaaNMcdh",
+      "title": "poop",
+      "body": "ok",
+      "email": "nguven996@gmail.com",
+      "reactions": {
+        "thumbsUp": 0,
+        "cool": 0,
+        "wow": 0,
+        "funny": 0,
+        "love": 0
+      }
     }
   ]
 }

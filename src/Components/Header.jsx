@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import logo from "/logo.png";
 import { useEffect, useState } from "react";
 import AuthModal from "./AuthModal";
@@ -7,9 +6,11 @@ import { auth } from "../firebase/config";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectIsLoggedIn } from "../redux/slice/userSlice";
 import { toast } from "react-toastify";
+import FormModal from "./FormModal";
 
 const Header = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [authModal, setAuthModal] = useState(false);
+  const [formModal, setFormModal] = useState(false);
 
   const dispatch = useDispatch();
   const loggedIn = useSelector(selectIsLoggedIn);
@@ -32,7 +33,15 @@ const Header = () => {
   const logoutUser = () => {
     dispatch(logout());
     auth.signOut();
-    toast.info("You have been signed out")
+    toast.info("You have been signed out");
+  };
+
+  const handleFormModalClick = () => {
+    if (!loggedIn) {
+      toast.info("Login to create a post");
+      return
+    }
+    setFormModal(prev => !prev)
   };
 
   return (
@@ -42,18 +51,25 @@ const Header = () => {
         <span className="uppercase font-semibold text-2xl ml-3">Posts</span>
       </div>
       <div className="text-white text-lg uppercase flex gap-5 mr-7">
-        <NavLink to="/">Create</NavLink>
+        <span className="cursor-pointer" onClick={handleFormModalClick}>
+          Create
+        </span>
         {loggedIn ? (
           <span className="cursor-pointer" onClick={logoutUser}>
             Logout
           </span>
         ) : (
-          <NavLink onClick={() => setShowModal((prev) => !prev)} to="#">
+          <span
+            className="cursor-pointer"
+            onClick={() => setAuthModal((prev) => !prev)}
+            to="#"
+          >
             Login
-          </NavLink>
+          </span>
         )}
       </div>
-      {showModal && <AuthModal setShowModal={setShowModal} />}
+      {authModal && <AuthModal setAuthModal={setAuthModal} />}
+      {formModal && <FormModal setFormModal={setFormModal}/>}
     </nav>
   );
 };

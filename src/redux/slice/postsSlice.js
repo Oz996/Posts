@@ -22,6 +22,7 @@ export const createPost = createAsyncThunk(
   async (postData) => {
     try {
       const res = await axios.post("http://localhost:3000/posts", postData);
+      console.log(res.data)
       return res.data;
     } catch (error) {
       console.error(error);
@@ -31,6 +32,7 @@ export const createPost = createAsyncThunk(
 
 export const showPosts = createAsyncThunk("posts/showPosts", async () => {
   const res = await axios.get("http://localhost:3000/posts");
+  console.log(res.data)
   return res.data;
 });
 
@@ -42,23 +44,31 @@ const postsSlice = createSlice({
       const postId = action.payload;
       return state.filter((post) => post.id !== postId);
     },
-    addReaction(state, action) {
+    incrementReaction(state, action) {
       const { postId, reaction } = action.payload;
       const existingPost = state.find((post) => post.id === postId);
       if (existingPost) {
         existingPost.reactions[reaction]++;
       }
     },
+    decrementReaction(state, action) {
+      const { postId, reaction } = action.payload;
+      const existingPost = state.find((post) => post.id === postId);
+      if (existingPost) {
+        existingPost.reactions[reaction]--;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(showPosts.fulfilled, (state, action) => {
       return action.payload;
-    });
+    })
   },
 });
 
 export const selectAllPosts = (state) => state.posts;
 
-export const { removePost, addReaction } = postsSlice.actions;
+export const { removePost, incrementReaction, decrementReaction } =
+  postsSlice.actions;
 
 export default postsSlice.reducer;
